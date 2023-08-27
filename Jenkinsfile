@@ -27,7 +27,7 @@ pipeline {
                     userRemoteConfigs: [
                         [
                             url: 'https://github.com/santiago-jv/reactjs-jenkins-pipeline.git',
-                            credentialsId: env.GITHUB_CREDENTIALS
+                            //credentialsId: env.GITHUB_CREDENTIALS
                         ]
                 ])
             }
@@ -40,7 +40,7 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('Upload build to S3') {
             steps {
                 echo 'Must be execute tests...'
             }
