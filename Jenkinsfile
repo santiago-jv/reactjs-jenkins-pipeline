@@ -17,7 +17,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'npm i'
+                nodejs(nodeJSInstallationName: 'NodeJS@16.0.0') {
+                    sh 'npm i'
+                }
             }
         }
         stage('Test') {
