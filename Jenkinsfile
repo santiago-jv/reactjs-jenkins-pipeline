@@ -42,8 +42,11 @@ pipeline {
             }
         }
         stage('Upload build to S3') {
-            steps {
-                echo 'Must be execute tests...'
+             steps {
+                withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                    s3Upload(pathPattern: 'dist/**/*', includePathPattern: true, 
+                    bucket: env.S3_BUCKET, workingDir: 'build/')
+                }
             }
         }
         stage('Deploy') {
