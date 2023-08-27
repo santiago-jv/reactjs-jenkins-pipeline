@@ -44,7 +44,7 @@ pipeline {
         stage('Upload build to S3') {
              steps {
                 withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
-                    s3Upload(path: 'dist/**/*', includePathPattern: true, 
+                    s3Upload(path: 'dist/**/*', 
                     bucket: env.S3_BUCKET, workingDir: 'build/')
                 }
             }
