@@ -3,8 +3,6 @@ pipeline {
     
     environment {
         GITHUB_CREDENTIALS = credentials('santiagojv-github-credentials')
-        AWS_ACCESS_KEY_ID = credentials('santiagojv-aws-access-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('santiagojv-aws-secret-access-key')
         S3_BUCKET = 'santiagojv-deployments'
     }
 
@@ -43,7 +41,7 @@ pipeline {
         }
         stage('Upload build to S3') {
              steps {
-                withAWS(region: 'us-east-1', credentials: 'aws-credentials') {
+                withAWS(region: 'us-east-1', credentials: 'santiagojv-aws-credentials') {
                     s3Upload(path: 'dist/**/*', 
                     bucket: env.S3_BUCKET, workingDir: 'build/')
                 }
