@@ -26,7 +26,7 @@ pipeline {
                     ],
                     userRemoteConfigs: [
                         [
-                            url: 'https://github.com/santiago-jv/reactjs-jenkins-pipeline.git',
+                            url: 'https://github.com/santiago-jv/reactjs-jenkins-pipeline.git'
                             //credentialsId: env.GITHUB_CREDENTIALS
                         ]
                 ])
