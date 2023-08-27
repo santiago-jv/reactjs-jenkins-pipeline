@@ -1,20 +1,9 @@
 pipeline {
-    agent any
-    
+    agent any 
     environment {
-        GITHUB_CREDENTIALS = credentials('santiagojv-github-credentials')
         S3_BUCKET = 'santiagojv-deployments'
     }
-
     stages {
-        stage("Show variables") {
-            steps {
-                sh 'echo $GITHUB_CREDENTIALS'
-                sh 'echo $AWS_ACCESS_KEY_ID'
-                sh 'echo $AWS_SECRET_ACCESS_KEY'
-                sh 'echo $S3_BUCKET'
-            }
-        }
         stage('Checkout') {
             steps {
                 checkout([
@@ -39,7 +28,7 @@ pipeline {
                 }
             }
         }
-        stage('Upload build to S3') {
+        stage('Deploy build to S3') {
              steps {
                 withAWS(region: 'us-east-1', credentials: 'santiagojv-aws-credentials') {
                     s3Upload(path: '', 
@@ -47,11 +36,6 @@ pipeline {
                     file: 'dist/',
                     )
                 }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
             }
         }
     }
