@@ -42,9 +42,9 @@ pipeline {
         stage('Upload build to S3') {
              steps {
                 withAWS(region: 'us-east-1', credentials: 'santiagojv-aws-credentials') {
-                    s3Upload(path: 'dist/', 
+                    s3Upload(path: 'build/', 
                     bucket: env.S3_BUCKET,
-                    file: 'build/',
+                    file: 'dist/',
                     )
                 }
             }
