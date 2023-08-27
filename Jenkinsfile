@@ -44,7 +44,7 @@ pipeline {
                 withAWS(region: 'us-east-1', credentials: 'santiagojv-aws-credentials') {
                     s3Upload(path: 'dist/', 
                     bucket: env.S3_BUCKET,
-                    fileParam: 'build/',
+                    file: 'build/',
                     )
                 }
             }
