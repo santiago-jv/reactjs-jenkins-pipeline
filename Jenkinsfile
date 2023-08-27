@@ -9,6 +9,14 @@ pipeline {
     }
 
     stages {
+        stage("Show variables") {
+            steps {
+                sh 'echo $GITHUB_CREDENTIALS'
+                sh 'echo $AWS_ACCESS_KEY_ID'
+                sh 'echo $AWS_SECRET_ACCESS_KEY'
+                sh 'echo $S3_BUCKET'
+            }
+        }
         stage('Checkout') {
             steps {
                 checkout([
